@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Subfolders of data folder
+data/raw/
+data/processed/
