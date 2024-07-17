@@ -93,8 +93,7 @@ def highlight_tuning(row):
     return ['background-color: darkgreen; color: white' if row.name == 'MAE' else '' for _ in row]
 styled_df_tuning = df_tuning.style.apply(highlight_tuning, axis=1)
 
-with st.expander('See detailed performance metrics after parameter tuning'):
-    st.dataframe(styled_df_tuning, use_container_width=True)
+st.dataframe(styled_df_tuning, use_container_width=True)
 
 
 ###################################################################################################
@@ -129,8 +128,7 @@ def highlight_ncf(row):
 styled_df_ncf = df_ncf.style.apply(highlight_ncf, axis=1)
 
 # Displaying the table in Streamlit
-with st.expander('See detailed performance metrics of the NCF model and top 3 performing models'):
-    st.dataframe(styled_df_ncf, use_container_width=True)
+st.dataframe(styled_df_ncf, use_container_width=True)
 
 
 
