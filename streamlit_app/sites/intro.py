@@ -2,11 +2,11 @@ import streamlit as st
 from PIL import Image
 import os
 
-st.title("Movie Recommender System")
-st.text("")  # Add empty text for spacing
+
 
 # Find and display image
-st.image(Image.open(os.path.join(os.path.dirname(__file__), "..", "images", "img1.jpg")), caption=" ", width=650)
+st.image(Image.open(os.path.join(os.path.dirname(__file__), "..", "images", "movie_title_image.jpg")), caption=" ")#, width=650)
+st.title("Movie Recommender System")
 
 st.markdown("""
    
@@ -15,9 +15,8 @@ st.markdown("""
     We utilized the MovieLens 25M dataset to train and evaluate various models.
 
     
-    ## Introduction to the Project
+    ### Introduction to the Project
     
-    ### Overview
     - **Collaborative Filtering**: The project employs collaborative filtering, focusing on similarities between users and items respectively to provide recommendations.
     - **Data Analysis and Preprocessing**: Initial data analysis and preprocessing were conducted to create a manageable dataset for further analysis and model building.
     - **Model Evaluation**: Various models were trained and fine-tuned, with the best-performing models evaluated for their effectiveness.

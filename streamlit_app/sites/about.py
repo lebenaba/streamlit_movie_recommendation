@@ -21,3 +21,7 @@ box.markdown('###### MovieLens 25M dataset:')
 box.markdown(ref_ML25m)
 box.markdown('###### Surprise library:')
 box.write(ref_Surprise)
+box.markdown("""
+###### Title image credit:
+https://pixabay.com/illustrations/ai-generated-movie-theater-8848753/
+             """)
