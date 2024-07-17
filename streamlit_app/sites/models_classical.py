@@ -33,7 +33,7 @@ st.subheader('Own implementation of collaborative filtering')
 st.markdown('''
             Item-based filtering is quicker and more stable than user-based filtering, when n_users >> n_items due to:
             - Required memory (160k x 160k user-user-matrix vs. 2400 x 2400 item-item-matirx).
-            - Matrix sparcity (missing values > 98%) with high rating density for items compared to users.
+            - Matrix sparsity (missing values > 98%) with high rating density for items compared to users.
 ''')
 
 box =  st.container(border=True)
@@ -135,7 +135,7 @@ fig.update_xaxes(categoryorder='array', categoryarray= order)
 
 
 st.plotly_chart(fig)
-st.caption(f'Chart {n_chart}: {metric} for different Surprise models.')
+st.caption(f'Chart {n_chart}: {metric} for different Surprise models; see sidebar for different options.')
 
 st.markdown('''*GridSearchCV* was applied to all elegible models (*SlopeOne* and *NormalPredictor* do not take arguments).
             Performance was measured in 5-fold *cross-validation*.''')
@@ -163,7 +163,7 @@ with st.expander('See train and test time per model'):
     fig.update_xaxes(categoryorder='array', categoryarray= order)
 
     st.plotly_chart(fig)
-    st.caption(f'Chart {n_chart}: Average fit and test times during 5-fold cross-validation of optimized Surprise models.')
+    st.caption(f'Chart {n_chart}: Average fit and test times during 5-fold cross-validation of optimized Surprise models; see sidebar for sorting options.')
 
 ####################################################################################################
 ##################################### precision@k and recall@k #####################################
