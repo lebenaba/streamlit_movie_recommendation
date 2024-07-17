@@ -8,23 +8,28 @@ The goal of this project is to create a recommendation system based on the Movie
 
 This project was developed by the following team :
 
-- Lena Ametsbichler ([GitHub](https://github.com/) / [LinkedIn](https://www.linkedin.com/in/lena-ametsbichler/))
-- Leonhard Löffler ([GitHub](https://github.com/) / [LinkedIn](www.linkedin.com/in/leonhard-loeffler))
+- Lena Ametsbichler ([LinkedIn](https://www.linkedin.com/in/lena-ametsbichler/))
+- Leonhard Löffler ([LinkedIn](https://www.linkedin.com/in/leonhard-loeffler/))
 
 You can browse and run the [notebooks](./notebooks). 
 
-You will need to download the data from [MovieLens](https://files.grouplens.org/datasets/movielens/ml-25m.zip) and extract/save it to the directory data/raw:
+You will need to download the data from [MovieLens](https://grouplens.org/datasets/movielens/25m/) and extract/save it to the directory data/raw:
 
-├── data               <- Should be in your computer but not on Github (only in .gitignore)  
-│   ├── dataframes     <- Pre-processed data for Streamlit app.  
-│   ├── models         <- Pre-calculated models for Streamlit app.  
-│   ├── processed      <- The final, canonical data sets for modeling; Should be on your computer but not on Github (only in .gitignore)  
-│   └── raw            <- The original, immutable data dump; Should be on your computer but not on Github (only in .gitignore)  
+    ├── data                
+    │   ├── dataframes     <- Pre-processed data for Streamlit app.  
+    │   ├── models         <- Pre-calculated models for Streamlit app.  
+    │   ├── processed      <- The final, canonical data sets for modeling; Should be on your computer but not on Github (only in .gitignore)  
+    │   └── raw            <- The original, immutable data dump; Should be on your computer but not on Github (only in .gitignore)  
 
 You will need to install the dependencies (in a dedicated environment) :
 
 ```
 pip install -r requirements.txt
+```
+You also need to create a *.env* file inside the folder "streamlit_app" containing the environment variable MOVIE_REC_PATH which holds the path to the data folder, where the original data lies. Here is an example, you have to replace the show path with your path:
+
+```
+MOVIE_REC_PATH = "C:/Users/Username/Git_repos/streamlit_movie_recommendation"
 ```
 
 ## Streamlit App
