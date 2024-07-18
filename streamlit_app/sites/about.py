@@ -9,7 +9,7 @@ box.write('Leonhard Löffler [LinkedIn](https://www.linkedin.com/in/leonhard-loe
 
 st.subheader('Mentor')
 box =  st.container(border=True)
-box.write('Roseline Polle [LinkedIn][https://www.linkedin.com/in/roseline-polle-68559762/]')
+box.write('Roseline Polle [LinkedIn](https://www.linkedin.com/in/roseline-polle-68559762/)')
 
 st.subheader('References')
 
