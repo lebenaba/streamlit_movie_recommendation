@@ -24,12 +24,7 @@ You will need to download the data from [MovieLens](https://grouplens.org/datase
 You will need to install the dependencies (in a dedicated environment) :
 
 ```
-pip install -r requirements.txt
-```
-You also need to create a *.env* file inside the folder "streamlit_app" containing the environment variable MOVIE_REC_PATH which holds the path to the data folder, where the original data lies. Here is an example, you have to replace the show path with your path:
-
-```
-MOVIE_REC_PATH = "C:/Users/Username/Git_repos/streamlit_movie_recommendation"
+poetry install
 ```
 
 ## Streamlit App
