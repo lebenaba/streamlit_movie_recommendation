@@ -45,7 +45,7 @@ st.markdown('''
 @st.cache_data
 def load_df(name):
     # df = pd.read_csv('../../movie_recommendation/data/raw/ml-25m/movies.csv')
-    df=pd.read_parquet(f'{current_dir}/../../data/dataframes/{name}.parquet')
+    df=pd.read_parquet(f'data/dataframes/{name}.parquet')
     # os.getenv('MOVIE_REC_PATH')
     return df
 df_movies = load_df('movies')
