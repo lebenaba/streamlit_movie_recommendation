@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from PIL import Image
 import os
+import joblib
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -42,24 +43,39 @@ st.markdown('''
 ######################################################################################################
 
 @st.cache_data
-def load_df_movies():
+def load_df(name):
     # df = pd.read_csv('../../movie_recommendation/data/raw/ml-25m/movies.csv')
-    df = pd.read_csv(f'{movie_rec_path}/data/raw/ml-25m/movies.csv')
-    os.getenv('MOVIE_REC_PATH')
+    df=pd.read_parquet(f'{current_dir}/../../data/dataframes/{name}.parquet')
+    # os.getenv('MOVIE_REC_PATH')
     return df
-df_movies = load_df_movies()
+df_movies = load_df('movies')
 
-with st.expander('See example of movie data'):
-    st.dataframe(df_movies.head(), hide_index=True)
+with st.expander('See examples of all tables of the MovieLens 25M Dataset'):
+    st.markdown("First five rows of the 'movies' table.")
+    st.dataframe(load_df('movies').head(), hide_index=True)
 
-# hot-one encoding to split genres in separate columns using pandas strin method
-df_movies = pd.concat([df_movies, df_movies['genres'].str.get_dummies(sep='|')], axis=1)
-# removing unnecessary columns
-df_movies.drop(['title','genres'], axis=1, inplace=True)
-# rename column to avoid spaces
-df_movies.rename(columns={'(no genres listed)':'no_genre_listed'}, inplace=True)
+    left_column, right_column = st.columns(2)
+    left_column.markdown("First five rows of the 'ratings' table.")
+    left_column.dataframe(load_df('ratings').head(), hide_index=True)
+    right_column.markdown("First five rows of the 'tags' table.")
+    right_column.dataframe(load_df('tags').head(), hide_index=True)
+    left_column.markdown("First five rows of the 'genome-tags' table.")
+    left_column.dataframe(load_df('genome-tags').head(), hide_index=True)
+    right_column.markdown("First five rows of the 'genome-scores' table.")
+    right_column.dataframe(load_df('genome-scores').head(), hide_index=True)
+    st.markdown("First five rows of the 'links' table, allows to link the ML dataset to IMDb and TMDB data.")
+    st.dataframe(load_df('links').head(), hide_index=True)
 
-frequency_genres = df_movies.iloc[:,1:].sum()
+# # hot-one encoding to split genres in separate columns using pandas strin method
+# df_movies = pd.concat([df_movies, df_movies['genres'].str.get_dummies(sep='|')], axis=1)
+# # removing unnecessary columns
+# df_movies.drop(['title','genres'], axis=1, inplace=True)
+# # rename column to avoid spaces
+# df_movies.rename(columns={'(no genres listed)':'no_genre_listed'}, inplace=True)
+
+# frequency_genres = df_movies.iloc[:,1:].sum()
+
+frequency_genres = joblib.load(f'{current_dir}/../../data/dataframes/frequency_genres.pkl')
 
 # @st.cache_data
 # def load_genre_ratings():
@@ -155,9 +171,22 @@ st.subheader('Statistics and data visualization')
 
 # checkbox for displaying plots
 with st.expander('See genre analysis'):
-    st.markdown('#### Genre distribution and rating')
+    st.markdown('#### Genre distribution and average rating per genre')
     st.plotly_chart(fig_pie)
+    st.write('''
+             We see an imbalanced distribution of genres (a single movie can be tied to more than one genre). 
+             Out of all 20 genres (including no_genre_listed), the top five account for 
+             about 59% of all observations, while the least frequent five genres make up for about 4.3% only.
+             ''' )
     st.image(Image.open(os.path.join(os.path.dirname(__file__), "..", "images", "distribution_movie_rating_genre.png")))
+    st.write('''
+             The boxplot shows average user ratings clustered by genre. Generally speaking, the medians and interquartile ranges (IQR) 
+             are quite similar for most genres, the average rating is close to 3 stars for the majority. We see the trend, that smaller 
+             genres like Film-Noir and IMAX tend to show a tighter distribution of ratings and have significantly less outliers than other genres.
+             Movies of the category 'no_genre_listed' place 10th out of 20 with an average rating of 3.05. This suggests that this category contains 
+             movies from all genres. Furthermore it is on of the most heterogenous categories regarding the wide distribution of ratings, seen in a 
+             big IQR and comparably long whiskers of the box plot.
+             ''' )
 
 with st.expander('See rating analysis'):
     st.markdown('#### Rating behaviour')
