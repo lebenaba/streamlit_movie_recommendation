@@ -31,10 +31,11 @@ st.write("""
 """)
    
 # Find and display image
-with st.expander("Training and Validation Loss"):
-    st.image(Image.open(os.path.join(os.path.dirname(__file__), "..", "images", "img3.jpg")), caption=" ", width=550)
+st.image(Image.open(os.path.join(os.path.dirname(__file__), "..", "images", "img3.jpg")), caption=" ", width=550)
 
-st.write("""   
+
+box =  st.container(border=True)
+box.write("""   
     ### Learnings
     - The NCF model showed promising results but requires further refinement.
     - Including additional features like tag embeddings and one-hot encoded genres improved performance slightly, with mixed results.

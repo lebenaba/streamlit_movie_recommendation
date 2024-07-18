@@ -7,7 +7,7 @@ box =  st.container(border=True)
 box.write('Lena Ametsbichler [LinkedIn](https://www.linkedin.com/in/lena-ametsbichler/)')
 box.write('Leonhard Löffler [LinkedIn](https://www.linkedin.com/in/leonhard-loeffler/)')
 
-st.subheader('Support')
+st.subheader('Mentor')
 box =  st.container(border=True)
 box.write('Roseline Polle')
 

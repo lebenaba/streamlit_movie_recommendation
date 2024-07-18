@@ -142,8 +142,9 @@ st.dataframe(styled_df_ncf, use_container_width=True)
 ############################################ Learnings ############################################
 ###################################################################################################
 
-st.subheader('Learnings')
-st.markdown('''
+box =  st.container(border=True)
+box.subheader('Learnings')
+box.markdown('''
 - **Model Performance**: Traditional collaborative filtering techniques, particularly matrix factorization (SVD) and KNN-based models, provided robust performance. 
 - **Metrics**: The MAE values indicated that predicted ratings were, on average, within 0.63 of the actual ratings, which are satisfying results.
 - **Parameter Tuning**: GridSearchCV improved the performance of some models, but not by a large amount.
